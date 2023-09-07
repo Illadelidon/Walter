@@ -1,6 +1,8 @@
 ﻿@using Walter.Core.DTO_s.Post;
 @model PostDto
 
+
+
 @{
     ViewData["Title"] = "Posts";
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
@@ -85,6 +87,57 @@
                                                 </div>
                                             </div>
                                         </div>
+
+
+
+
+
+                                        @*type="file" name="input-file" id="input-file" asp-for="@Model.File"*@
+
+
+                                        <div class="container">
+                                            <div class="group">
+                                                <img src="css/[CITYPNG.COM]HD Photo Camera Black Icon PNG - 566x512.png" alt="" class="crop-image" id="crop-image">
+                                                <input type="file" name="input-file" id="input-file" asp-for="@Model.File" accept=".png,.jpg,.jpeg">
+                                                <label for="input-file" class="label-file">Select</label>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="modal">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <p>Recorta tu foto</p>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="content-imagen-cropper">
+                                                        <img src="" alt="" class="img-cropper" id="img-cropper">
+                                                    </div>
+                                                    <div class="content-imagen-sample">
+                                                        <div src="" alt="" class="img-sample" id="img-croppered"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button class="btn primary" id="cut">Cut</button>
+                                                    <button class="btn secundary" id="close">Cancel</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                                     
+
                                         <div class="card-footer">
                                             <button type="submit" class="btn btn-primary">Create</button>
                                         </div>
@@ -102,6 +155,34 @@
     </section>
     <!-- /.content -->
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/dashboard/js/jquery.js"></script>
+<script src="/dashboard/js/cropper.js"></script>
+<script src="/dashboard/js/index.js"></script>
 
 @section Scripts{
     <script src="~/dashboard/plugins/summernote/summernote-bs5.min.js"></script>
