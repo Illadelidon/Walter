@@ -1,0 +1,13 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <partial name="./Home/_Header.cshtml" />
+</head>
+<body >
+    <div class="wrapper">
+        <partial name="./Home/_Navbar.cshtml" />
+            @RenderBody()   
+    </div>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,78 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@using Walter.Core.DTO_s.Post;
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Web.Common;
+@using X.PagedList;
+@model IPagedList<PostDto>
+
+
+@{
+    ViewData["Title"] = "Posts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@foreach (var item in Model)
+{
+     <div class="list-group-item mb-5">
+
+
+
+        <div class="content">
+
+            <div class="card-list ">
+                <article class="card ">
+                    <figure class="card-image ">
+                        @if (item.ImagePath == "Default.png")
+                        {
+                            <img class="img-fluid" src="~/images/posts/Default.png">
+                        }
+                        else
+                        {
+                            <img class="img-fluid" src="~/images/posts/@item.ImagePath" >
+                        }
+                    </figure>
+                    <div class="card-header">
+                        <a asp-controller="Post" asp-action="FullNews" asp-route-id="@item.Id"> @item.Title</a>
+                        
+                    </div>
+                    <div class="card-footer">
+                        
+                        <div class="card-meta card-meta--date">
+
+                            @item.PublishDate
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+        </div>
+    </div>
+
+
+
+}
+
+
+
+                        <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
+                            @Html.PagedListPager(Model, page => Url.Action("index", new { page = page }), new PagedListRenderOptions()
+                            {
+                            ActiveLiElementClass = "active",
+                            PageClasses = new[]{ "page-link"},
+                            LiElementClasses=new[] { "page-item" },
+                            UlElementClasses = new[] { "pagination","justify-content-center", "mt-3" },
+                            LinkToNextPageFormat = "Next",
+                            LinkToPreviousPageFormat = "Prev",
+                            MaximumPageNumbersToDisplay = 3,
+                            DisplayLinkToPreviousPage = PagedListDisplayMode.Never,
+                            DisplayLinkToNextPage = PagedListDisplayMode.Never
+                            })
+                        </div>
+                        @if (Model.Count() <= 0)
+                        {
+                            <h2>No posts were found for your query.</h2>
+                        }
+                 

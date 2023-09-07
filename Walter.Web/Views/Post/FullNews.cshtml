@@ -1,0 +1,33 @@
+﻿@using Walter.Core.DTO_s.Post;
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Web.Common;
+@using X.PagedList;
+@model  PostDto;
+
+@{
+    ViewData["Title"] = "Posts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+
+   
+    <h1>@Model.Title</h1>
+<p>@Model.Description</p>
+
+
+
+
+
+<div class="form-group">
+    @if (@Model.ImagePath == "Default.png")
+    {
+        <img src="~/images/main/content-images/1.jpg" alt="Photo">
+    }
+    else
+    {
+        <img src="~/images/posts/@Model.ImagePath" alt="Photo">
+    }
+</div>
