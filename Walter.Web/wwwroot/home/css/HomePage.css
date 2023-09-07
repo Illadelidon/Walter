@@ -29,104 +29,111 @@ body {
 
 
 
-*, *:after, *:before {
-    box-sizing: border-box;
+.title {
+    margin-bottom: 50px;
+    text-transform: uppercase;
 }
 
-
-
-img {
-    max-width: 100%;
-    display: block;
-}
-
-.card-list {
-    width: 90%;
-    max-width: 400px;
+.card-block {
+    font-size: 1em;
+    position: relative;
+    margin: 0;
+    padding: 1em;
+    border: none;
+    border-top: 1px solid rgba(34, 36, 38, .1);
+    box-shadow: none;
 }
 
 .card {
-    background-color: #FFF;
-    box-shadow: 0 0 0 1px rgba(#000, .05), 0 20px 50px 0 rgba(#000, .1);
-    border-radius: 15px;
+    display: flex;
+    justify-content: center;
     overflow: hidden;
-    padding: 1.25rem;
+    padding: 5;
+    border: none;
+    border-radius: .28571429rem;
+    box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+    margin-top: 20px;
+    width: 1120px;
+    
+}
+.date{
+    text-align:end
+}
+
+@import url(https://fonts.googleapis.com/css?family=Bitter);
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    
+    padding-top: 50px;
+}
+
+.bgblock {
+    background: url(https://dl.dropbox.com/s/mz2pjouq8xqw45k/wood_1.png?dl=1);
+    width: 100vh;
+}
+
+blockquote {
     position: relative;
-    transition: .15s ease-in;
-    margin: 15px;
-    &:hover, &:focus-within
-
-{
-    box-shadow: 0 0 0 2px #16C79A, 0 10px 60px 0 rgba(#000, .1);
-    transform: translatey(-5px);
-}
-
-}
-
-.card-image {
+    display: inline-block;
+    background: #eee;
+    padding: 40px 30px 30px 60px;
     border-radius: 10px;
-    overflow: hidden;
-}
-
-.card-header {
-    margin-top: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    a{
-    font-weight: 600;
-    font-size: 1.375rem;
-    line-height: 1.25;
-    padding-right: 1rem;
-    text-decoration: none;
-    color: inherit;
-    will-change: transform;
-    &:after
+    font-family: 'Bitter', serif;
+    color: #333;
+    text-align: left;
+    box-shadow: 1px 1px 1px #999, 2px 2px 1px #999, 3px 3px 1px #999;
+    transition-duration: .3s;
+    span .author
 
 {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-}
-
-}
-}
-
-
-
-.card-footer {
-    margin-top: 1.25rem;
-    border-top: 1px solid #ddd;
-    padding-top: 1.25rem;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.card-meta {
-    display: flex;
-    align-items: center;
-    color: #787878;
-    &:first-child:after
+    position: relative;
+    display: block;
+    text-align: right;
+    margin-top: 5px;
+    color: #999;
+    i
 
 {
+    position: relative;
+    background: #eee;
+    padding-left: 5px;
+    font-style: italic;
+    z-index: 5;
+}
+
+&::before {
     display: block;
     content: "";
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background-color: currentcolor;
-    margin-left: .75rem;
-    margin-right: .75rem;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: #ccc;
+    z-index: 1;
 }
 
-svg {
-    flex-shrink: 0;
-    width: 1em;
-    height: 1em;
-    margin-right: .25em;
 }
+
+&:hover {
+    box-shadow: 1px 1px 5px #999, 2px 2px 6px #999, 3px 3px 7px #999;
+}
+
+&::before {
+    display: block;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    content: "\"";
+    font-family: 'Bitter', serif;
+    font-size: 120px;
+    color: #999
+}
+}
+.fltext {
+    text-align: center;
 }

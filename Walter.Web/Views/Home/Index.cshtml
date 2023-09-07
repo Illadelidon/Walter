@@ -14,7 +14,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@foreach (var item in Model)
+@*@foreach (var item in Model)
 {
      <div class="list-group-item mb-5">
 
@@ -53,7 +53,64 @@
 
 
 
+}*@
+
+@foreach (var item in Model)
+{
+
+<div class="container py-3">
+
+    <!-- Card Start -->
+    <div class="card">
+        <div class="row ">
+
+            <div class="col-md-7 px-3">
+                <div class="card-block px-6">
+                        <h4 class="card-title"> @item.Title </h4>
+                    <p class="card-text">
+                        @item.Description
+                    </p>
+                        <p class="category card-text">
+                            @item.CategoryName
+                        </p>
+                    <br>
+                        <div >
+                            <a asp-controller="Post" asp-action="FullNews" asp-route-id="@item.Id" class=" btn btn-primary">Read more</a>
+                    </div>
+                       
+                </div>
+                    <p class="date card-text mt-5">
+                        @item.PublishDate
+                    </p>
+            </div>
+            <!-- Carousel start -->
+            <div class="col-md-5">
+                @if (item.ImagePath == "Default.png")
+                        {
+                            <img class="img-fluid" src="~/images/posts/Default.png">
+                        }
+                        else
+                        {
+                            <img class="img-fluid" src="~/images/posts/@item.ImagePath" >
+                        }
+            </div>
+            <!-- End of carousel -->
+        </div>
+    </div>
+    <!-- End of card -->
+    </div>
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 

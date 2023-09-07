@@ -21,13 +21,22 @@
 
 
 
-<div class="form-group">
-    @if (@Model.ImagePath == "Default.png")
-    {
-        <img src="~/images/main/content-images/1.jpg" alt="Photo">
-    }
-    else
-    {
-        <img src="~/images/posts/@Model.ImagePath" alt="Photo">
-    }
+
+
+<div class="fltext">
+    <blockquote class="m-5">
+        <h1>@Model.Title</h1>
+        <p>@Model.FullText</p>
+        <div class="form-group">
+            @if (@Model.ImagePath == "Default.png")
+            {
+                <img src="~/images/main/content-images/1.jpg" alt="Photo">
+            }
+            else
+            {
+                <img src="~/images/posts/@Model.ImagePath" alt="Photo">
+            }
+        </div>
+        <span class="author"><i>@Model.PublishDate</i></span>
+    </blockquote>
 </div>
