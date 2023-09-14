@@ -15,11 +15,13 @@ namespace Walter.Web.Controllers
     {
         private readonly ICategoryService _categoryService;
         private readonly IPostService _postService;
+        private IWebHostEnvironment _webHostEnvironment;
 
-        public PostController(ICategoryService categoryService, IPostService postService)
+        public PostController(ICategoryService categoryService, IPostService postService, IWebHostEnvironment webHostEnvironment)
         {
             _categoryService = categoryService;
             _postService = postService; 
+            _webHostEnvironment = webHostEnvironment;
         }
 
         [AllowAnonymous]
@@ -146,6 +148,22 @@ namespace Walter.Web.Controllers
             return View(posts);
         }
 
+
+
+        [HttpPost]
+        public IActionResult Save()
+        {
+            string base64 = Request.Form["crop-image"];
+            byte[] bytes = Convert.FromBase64String(base64.Split(',')[1]);
+
+            string filePath = Path.Combine(this._webHostEnvironment.WebRootPath, "Images", "Cropped.png");
+            using (FileStream stream = new FileStream(filePath, FileMode.Create))
+            {
+                stream.Write(bytes, 0, bytes.Length);
+                stream.Flush();
+            }
+            return RedirectToAction("Index");
+        }
     }
 
 }
