@@ -1,7 +1,11 @@
-﻿
+﻿@using Walter.Core.DTO_s.Post;
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Web.Common;
+@using X.PagedList;
+@model IPagedList<PostDto>
 
 
-
+   
 <div class="container-fluid navbg colortextnav">
     <div class="row text-center">
         <div class="col">
@@ -9,13 +13,14 @@
 
             <div class="col">
                 <ul class="list-inline">
-                    <li class="list-inline-item "><a class="ref" href="#">Sport</a></li>
-                    <li class="list-inline-item"><a  class="ref" href="#">IT</a></li>
-                    <li class="list-inline-item"><a class="ref" href="#">Politic</a></li>
-
+                     @foreach (var item in Model)
+                        {
+                        
+                        <li class="list-inline-item "><a asp-controller="Home" asp-action="PostsByCategory" asp-route-id="@item.CategoryId" class="btn btn-default btn-sm">@item.CategoryName</a></li>
+                        }
                 </ul>
             </div>
         </div>
     </div>
 </div>
-
+                        

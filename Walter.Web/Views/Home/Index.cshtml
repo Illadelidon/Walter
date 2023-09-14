@@ -14,46 +14,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@*@foreach (var item in Model)
-{
-     <div class="list-group-item mb-5">
-
-
-
-        <div class="content">
-
-            <div class="card-list ">
-                <article class="card ">
-                    <figure class="card-image ">
-                        @if (item.ImagePath == "Default.png")
-                        {
-                            <img class="img-fluid" src="~/images/posts/Default.png">
-                        }
-                        else
-                        {
-                            <img class="img-fluid" src="~/images/posts/@item.ImagePath" >
-                        }
-                    </figure>
-                    <div class="card-header">
-                        <a asp-controller="Post" asp-action="FullNews" asp-route-id="@item.Id"> @item.Title</a>
-                        
-                    </div>
-                    <div class="card-footer">
-                        
-                        <div class="card-meta card-meta--date">
-
-                            @item.PublishDate
-                        </div>
-                    </div>
-                </article>
-            </div>
-
-        </div>
-    </div>
-
-
-
-}*@
 
 @foreach (var item in Model)
 {
@@ -66,12 +26,12 @@
 
             <div class="col-md-7 px-3">
                 <div class="card-block px-6">
-                        <h4 class="card-title"> @item.Title </h4>
+                        <h4 class="card-title"> @Html.Raw(item.Title) </h4>
                     <p class="card-text">
-                        @item.Description
+                            @Html.Raw(item.Description)
                     </p>
                         <p class="category card-text">
-                            @item.CategoryName
+                            @Html.Raw(item.CategoryName)
                         </p>
                     <br>
                         <div >
@@ -100,19 +60,6 @@
     <!-- End of card -->
     </div>
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                         <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
                             @Html.PagedListPager(Model, page => Url.Action("index", new { page = page }), new PagedListRenderOptions()

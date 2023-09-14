@@ -45,5 +45,7 @@ namespace Walter.Web.Controllers
             return View("Index", posts.ToPagedList(pageNumber, pageSize));
         }
 
+
+
     }
 }
