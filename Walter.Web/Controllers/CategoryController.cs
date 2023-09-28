@@ -107,15 +107,15 @@ namespace Walter.Web.Controllers
         [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> DeleteById(int id)
         {
-            var categoryDto = await _categoryService.Get(id);
+            /*var categoryDto = await _categoryService.Get(id);
             if (categoryDto == null)
             {
                 ViewBag.AuthError = "Category not found.";
                 return View();
-            }
+            }*/
             await _categoryService.Delete(id);
             return RedirectToAction(nameof(Index));
         }
-
+        
     }
 }

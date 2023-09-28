@@ -75,7 +75,7 @@ namespace Walter.Core.Services
             await _postRepo.Delete(id);
             await _postRepo.Save();
         }
-
+        
         public async Task<PostDto?> Get(int id)
         {
             if (id < 0) return null; // exception handling

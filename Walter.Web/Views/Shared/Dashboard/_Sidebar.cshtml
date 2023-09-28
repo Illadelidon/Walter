@@ -1,4 +1,12 @@
-﻿<!-- Main Sidebar Container -->
+﻿@using Microsoft.AspNetCore.Identity;
+@using Walter.Core.Entities.User;
+
+@inject UserManager<AppUser> UserManager
+
+@{
+    var user = await UserManager.GetUserAsync(User);
+}
+<!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
@@ -14,7 +22,7 @@
                 <img src="~/dashboard/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Alexander Pierce</a>
+                <a href="#" class="d-block">@user.FirstName @user.LastName</a>
             </div>
         </div>
 

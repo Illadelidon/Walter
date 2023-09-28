@@ -30,11 +30,13 @@ namespace Walter.Core.Services
         public async Task Delete(int id)
         {
             var result = await Get(id);
-            if (result != null) return;
-            await _categoryRepo.Delete(id);
-            await _categoryRepo.Save();
+            if (result != null)
+            {
+                await _categoryRepo.Delete(id);
+                await _categoryRepo.Save();
+            }
         }
-
+        
         public async Task<CategoryDto> Get(int id)
         {
             if (id < 0) return null;
