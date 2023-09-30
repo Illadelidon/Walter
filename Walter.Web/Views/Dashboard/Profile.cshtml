@@ -3,13 +3,11 @@
 @using Walter.Core.Entities.User;
 @inject UserManager<AppUser> UserManager;
 @model EditUserDto
-
 @{
     var user = await UserManager.GetUserAsync(User);
     var email = await UserManager.GetEmailAsync(user);
 
 }
-
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -83,16 +81,14 @@
                                 </form>
                             </div>
                             <hr />
-                            @*<div class="card card-danger">
+                            <!--Edit User Info-->
+                            <div class="card card-danger">
                                 <div class="card-header">
-                                    <h3 class="card-title">Update password</h3>
+                                    <h3 class="card-title">Update Info</h3>
                                 </div>
                                 <!-- /.card-header -->
                                 <!-- form start -->
-                                @if (@ViewBag.UpdatePasswordError != null)
-                                {
-                                    <span class="text-danger mt-3">@ViewBag.UpdatePasswordError</span>
-                                }
+                                
                                 <form method="post" asp-action="Profile">
                                     <div class="card-body">
                                         <input type="hidden" name="Email" asp-for="=@email" value=@email />
@@ -114,7 +110,8 @@
                                         <button type="submit" class="btn btn-danger">Update</button>
                                     </div>
                                 </form>
-                            </div>*@
+                            </div>
+                            <!--/Edit User Info-->
                         </div>
                     </div>
                 </div>
