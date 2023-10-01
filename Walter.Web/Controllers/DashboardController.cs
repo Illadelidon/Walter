@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Security.Claims;
 using Walter.Core.DTO_s.User;
 using Walter.Core.Services;
 using Walter.Core.Validation.User;
@@ -68,7 +69,7 @@ namespace Walter.Web.Controllers
             var result = await _userService.GetAllAsync();
             return View(result.Payload);
         }
-
+        [HttpGet]
         public async Task<IActionResult> Profile(string id)
         {
             var result = await _userService.GetByIdAsync(id);
@@ -211,6 +212,28 @@ namespace Walter.Web.Controllers
           (System.Collections.IEnumerable)result, nameof(IdentityRole.Id),
               nameof(IdentityRole.Name)
               );
+        }
+        [HttpPost]
+        public async Task<IActionResult>Index(string FirstName,string LastName)
+        {
+            var userId= User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (string.IsNullOrEmpty(userId)) 
+            {
+                return NotFound();
+            }
+
+            var result = await _userService.UpdateUserInfoAsync(userId, FirstName,LastName);
+
+            if(result)
+            {
+                return RedirectToAction("Index", "Dashboard");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Помилка оновлення імені користувача.");
+                return View();
+            }
         }
     }
 }

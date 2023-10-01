@@ -352,5 +352,20 @@ namespace Walter.Core.Services
             var roles = await _roleManager.Roles.ToListAsync();
             return roles;
         }
+
+        public async Task<bool> UpdateUserInfoAsync(string id, string newFirstName,string newLastName)
+        {
+            var user= await _userManager.FindByIdAsync(id);
+            if (user == null) 
+            {
+
+               return false;
+            }
+            user.FirstName = newFirstName;
+            user.LastName = newLastName;
+            var result= await _userManager.UpdateAsync(user);
+
+            return result.Succeeded;
+        }
     }
 }
