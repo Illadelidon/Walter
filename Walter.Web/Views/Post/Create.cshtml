@@ -77,40 +77,8 @@
                                             <select asp-for="CategoryId" asp-items="ViewBag.CategoryList" class="custom-select form-control-border"></select>
                                         </div>
                                         <div class="form-group">
-                                            <label>Image</label>
-                                            @*<div class=" input-group">
-                                                <div class="custom-file">
-                                                    <div class="custom-file">
-                                                        <input type="file" id="Image" name="files" asp-for="@Model.File" class="custom-file-input" />
-                                                        <label class="custom-file-label">Coose file...</label>
-                                                    </div>
-                                                </div>
-                                            </div>*@
-                                            
-                                          
-                                        
-
-                                        
-
-
-                                        @*type="file" name="input-file" id="input-file" asp-for="@Model.File"*@
-
-
-                                        
-
-
-
-
-
-
-
+                                           
                                         </div>
-
-
-
-
-                                     
-
                                         <div class="card-footer">
                                             <button type="submit" class="btn btn-primary">Create</button>
                                         </div>
@@ -126,48 +94,7 @@
 
 
 
-                                <div class="container">
-                                    <div class="group">
-                                        <img src="css/[CITYPNG.COM]HD Photo Camera Black Icon PNG - 566x512.png" alt="" class="crop-image" id="crop-image">
-                                        <input type="file" name="input-file" id="input-file" accept=".png,.jpg,.jpeg">
-                                        <label for="input-file" class="label-file">Select</label>
-                                    </div>
-                                </div>
-
-
-
-                                <div class="modal">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <p>Recorta tu foto</p>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="content-imagen-cropper">
-                                                <img src="" alt="" class="img-cropper" id="img-cropper">
-                                            </div>
-                                            <div class="content-imagen-sample">
-                                                <div src="" alt="" class="img-sample" id="img-croppered"></div>
-                                                <input type="file" name="crop-file" id="img-croppered" asp-for="@Model.File" accept=".png,.jpg,.jpeg">
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button class="btn primary" id="cut">Cut</button>
-                                            <button class="btn secundary" id="close">Cancel</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-
-
-
-
-
-
-
-
+                                
 
 
                             </div>

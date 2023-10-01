@@ -13,10 +13,12 @@ namespace Walter.Web.Controllers
     public class DashboardController : Controller
     {
         private readonly UserService _userService;
+        
 
         public DashboardController(UserService userService)
         {
             _userService = userService;
+           
         }
 
         public IActionResult Index()
@@ -193,7 +195,7 @@ namespace Walter.Web.Controllers
             }
             return View(nameof(Index));
         }
-
+        [HttpGet]
         public async Task<IActionResult> Edit(string id)
         {
             var result = await _userService.GetByIdAsync(id);
@@ -233,6 +235,43 @@ namespace Walter.Web.Controllers
             {
                 ModelState.AddModelError("", "Помилка оновлення імені користувача.");
                 return View();
+            }
+        }
+        [HttpPost]
+       public async Task <IActionResult>EditUsers(string id , string FirstName, string LastName)
+        {
+            if (string.IsNullOrWhiteSpace(id)||string.IsNullOrWhiteSpace(FirstName)||string.IsNullOrWhiteSpace(LastName))
+            {
+                return BadRequest("Некоректні дані");
+            }
+            var success = await _userService.UpdateUserInfoAsync(id, FirstName, LastName);
+
+            if (success)
+            {
+                return RedirectToAction("Index", "Dashboard");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Помилка оновлення імені користувача.");
+                return View();
+            }
+        }
+        [HttpPost]
+        public async Task<IActionResult>AssignRole(string id,string roleName)
+        {
+            if (string.IsNullOrWhiteSpace(id) || string.IsNullOrWhiteSpace(roleName))
+            {
+                return BadRequest("Некоректні дані");
+            }
+            var success = await _userService.AssignRoleAsync(id, roleName);
+
+            if (success)
+            {
+                return Ok("Роль надана користувачу успішно");
+            }
+            else
+            {
+                return NotFound("Користувача або роль не знайдено або сталася помилка");
             }
         }
     }

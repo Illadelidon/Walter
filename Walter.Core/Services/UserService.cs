@@ -367,5 +367,24 @@ namespace Walter.Core.Services
 
             return result.Succeeded;
         }
+
+        public async Task<bool> AssignRoleAsync(string id, string roleName)
+        {
+            var roleExists= await _roleManager.RoleExistsAsync(roleName);
+            if (!roleExists)
+            {
+                return false;
+            }
+
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null) 
+            {
+                return false;
+            }
+            
+            var addToRoleResult = await _userManager.AddToRoleAsync(user, roleName);
+            return addToRoleResult.Succeeded;
+        }
+
     }
 }
