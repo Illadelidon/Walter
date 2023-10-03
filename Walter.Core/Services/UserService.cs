@@ -371,6 +371,9 @@ namespace Walter.Core.Services
         public async Task<bool> AssignRoleAsync(string id, string roleName)
         {
             var roleExists= await _roleManager.RoleExistsAsync(roleName);
+
+
+            
             if (!roleExists)
             {
                 return false;
@@ -384,6 +387,18 @@ namespace Walter.Core.Services
             
             var addToRoleResult = await _userManager.AddToRoleAsync(user, roleName);
             return addToRoleResult.Succeeded;
+        }
+        public async Task<string> GetRoleNameById(string roleId)
+        {
+            var role = await _roleManager.FindByIdAsync(roleId);
+
+            if (role != null)
+            {
+                return role.Name;
+            }
+
+            // Якщо роль не знайдено, повертаємо порожню строку або інший відповідний значення за замовчуванням
+            return string.Empty;
         }
 
     }
