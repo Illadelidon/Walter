@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -9,15 +10,18 @@ using Walter.Core.Validation.User;
 
 namespace Walter.Web.Controllers
 {
+
     [Authorize]
     public class DashboardController : Controller
     {
         private readonly UserService _userService;
         
 
+
         public DashboardController(UserService userService)
         {
             _userService = userService;
+            
            
         }
 
@@ -257,21 +261,30 @@ namespace Walter.Web.Controllers
             }
         }
         [HttpPost]
-        public async Task<IActionResult>AssignRole(string id,string roleName)
+        public async Task<IActionResult>AssignRole(string id,string role)
         {
-            if (string.IsNullOrWhiteSpace(id) || string.IsNullOrWhiteSpace(roleName))
+
+             var selectedRoleId = Request.Form["RoleId"];
+
+             role = await _userService.GetRoleNameById(selectedRoleId);
+
+            
+
+
+
+            if (string.IsNullOrWhiteSpace(id) || string.IsNullOrWhiteSpace(role))
             {
                 return BadRequest("Некоректні дані");
             }
-            var success = await _userService.AssignRoleAsync(id, roleName);
+            var success = await _userService.AssignRoleAsync(id, role);
 
             if (success)
             {
-                return Ok("Роль надана користувачу успішно");
+                return RedirectToAction("Index", "Dashboard");
             }
             else
             {
-                return NotFound("Користувача або роль не знайдено або сталася помилка");
+                return NotFound("Неможливо змінити роль для цього користувача");
             }
         }
     }
